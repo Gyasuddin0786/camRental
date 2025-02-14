@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - camRental</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" asp-append-version="true" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" asp-append-version="true" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Footer.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/LoginSignupcss.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Testimonial.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Tranding.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Working.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/camRental.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+               <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/assets/img/logo.png" style="width: 80px; height: 60px;" />
+                </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="cameraDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Camera</a>
+                                <ul class="dropdown-menu" aria-labelledby="cameraDropdown">
+                                <li><a class="dropdown-item"  asp-controller="Camera" asp-action="DSLR">DSLR</a></li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+
+                                <li><a class="dropdown-item"  asp-area="" asp-controller="Camera" asp-action="DSLR">Mirrorless</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Camera" asp-action="DSLR">Point & Shoot</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="lensDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Lens</a>
+                                <ul class="dropdown-menu" aria-labelledby="lensDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Lens" asp-action="Nicon">Nicon</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Lens" asp-action="Canon">Canon</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Lens" asp-action="Sigma">Sigma</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Lens" asp-action="Tamron">Tamron</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="videographyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Videography</a>
+                                <ul class="dropdown-menu" aria-labelledby="videographyDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Camera" asp-action="DSLR">DSLR</a></li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Camera" asp-action="DSLR">Mirrorless</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Camera" asp-action="DSLR">Point & Shoot</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 200px;" />
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+
+                            <!-- Profile Dropdown -->
+                            <div class="dropdown ms-2">
+                                <button class="btn btn-outline-success" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 100%">
+                                    <i class="fa-regular fa-user fs-5"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="LogSign" asp-action="LogSign">Login / Signup</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Booking Details</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Logout</a></li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!---- Footer start from here --->
+    <footer class="container-fluid bg-grey py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="logo-part">
+                                <a asp-area="" asp-controller="Home" asp-action="Index">
+                                    <img src="~/assets/img/logo.png" style="width: 100%; height: 120px;"
+                                         alt="Company Logo"
+                                         class="w-50 logo-footer" />
+                                </a>
+                                <p>7637 Laurel Dr. King Of Prussia, PA 19406</p>
+                                <p>
+                                    Use this tool as test data for an automated system or find
+                                    your next pen
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 px-4">
+                            <h6>About CamRentals</h6>
+                            <p>But horizontal lines can only be a full pixel high.</p>
+                            <a class="btn-footer" asp-area="" asp-controller="Home" asp-action="Index">
+                                More Info
+                            </a>
+                            <br />
+                            <a class="btn-footer" asp-area="" asp-controller="Home" asp-action="Index">
+                                Contact Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 px-4">
+                            <h6>Contact us</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>
+                                            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                        </li>
+                                        <li>
+                                            <a asp-area="" asp-controller="Home" asp-action="Index">About</a>
+                                        </li>
+                                        <li>
+                                            <a  asp-area="" asp-controller="Home" asp-action="Index">Service</a>
+                                        </li>
+                                        <li>
+                                            <a  asp-area="" asp-controller="Home" asp-action="Index">Contact</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 px-4">
+                                    <ul>
+                                        <li>
+                                            <a asp-area="" asp-controller="Home" asp-action="Index">CamRentals Facility</a>
+                                        </li>
+                                        <li>
+                                            <a  asp-area="" asp-controller="Home" asp-action="Index">Terms</a>
+                                        </li>
+                                        <li>
+                                            <a  asp-area="" asp-controller="Home" asp-action="Index">Policy</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Follow Us</h6>
+                            <div class="social">
+                                <a class="text-secondary" asp-area="" asp-controller="Home" asp-action="Index">
+                                    <i class="fa-brands fa-square-facebook fs-1 me-2"></i>
+                                </a>
+                                <a class="text-secondary" asp-area="" asp-controller="Home" asp-action="Index">
+                                    <i class="fa-brands fa-instagram fs-1"></i>
+                                </a>
+                            </div>
+                            <form class="form-footer my-3">
+                                <input type="text"
+                                       placeholder="Search here..."
+                                       name="search" />
+                                <input type="button" value="Go" />
+                            </form>
+                            <p>Thats technology limitation of LCD monitors</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!---- Footer end from here --->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

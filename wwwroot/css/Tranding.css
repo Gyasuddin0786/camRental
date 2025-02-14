@@ -1,0 +1,15 @@
+﻿/* tranding card css start from here */
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+    .card:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        transform: scale(1.02);
+        cursor: pointer;
+    }
+/* tranding card css ends from here */

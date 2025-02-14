@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "LogSign";
+}
+<script>
+         function toggleForm() {
+             document.getElementById("loginForm").classList.toggle("d-none");
+             document.getElementById("signupForm").classList.toggle("d-none");
+         }
+    </script>
+<section>
+    <div class="d-flex justify-content-center align-items-center vh-90">
+        <div class="card p-4 shadow-lg" style="width: 400px;">
+
+            <!-- Login Form -->
+            <div id="loginForm">
+                <h3 class="text-center">LOGIN</h3>
+                <div class="text-center">
+                    <img src="~/assets/img/profile.gif" style="width: 100px; height: 80px;" class="img-fluid" />
+                </div>
+                <form asp-action="" method="post">
+                    <div class="form-group mt-3">
+                        <input type="email" class="form-control" placeholder="Email or Phone" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="password" class="form-control" placeholder="Password" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-dark w-100">Login</button>
+                    </div>
+                </form>
+                <div class="text-center mt-3">
+                    <p>Don't have an account? <a href="#" onclick="toggleForm()">Signup</a></p>
+                </div>
+            </div>
+
+            <!-- Signup Form  -->
+            <div id="signupForm" class="d-none">
+                <h3 class="text-center">SIGNUP</h3>
+                <div class="text-center">
+                    <img src="~/assets/img/avataR.GIF" style="width: 100px; height: 80px;" class="img-fluid" />
+                </div>
+                <form asp-action="" method="post">
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="tel" class="form-control" placeholder="Phone" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="password" class="form-control" placeholder="Password" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-dark w-100">Signup</button>
+                    </div>
+                </form>
+                <div class="text-center mt-3">
+                    <p>Already have an account? <a href="#" onclick="toggleForm()">Login</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+

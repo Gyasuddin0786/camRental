@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>fcbd135c-fd6f-4a9e-a364-6474fce1f35f</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\fonts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\img\avatar.gif" />
+    <None Include="wwwroot\assets\img\book.svg" />
+    <None Include="wwwroot\assets\img\choose.svg" />
+    <None Include="wwwroot\assets\img\ed.png" />
+    <None Include="wwwroot\assets\img\hew1.png" />
+    <None Include="wwwroot\assets\img\hew2.png" />
+    <None Include="wwwroot\assets\img\hew3.png" />
+    <None Include="wwwroot\assets\img\Home.png" />
+    <None Include="wwwroot\assets\img\Homee.png" />
+    <None Include="wwwroot\assets\img\Home_1.png" />
+    <None Include="wwwroot\assets\img\logo.png" />
+    <None Include="wwwroot\assets\img\profile.gif" />
+    <None Include="wwwroot\assets\img\qr.png" />
+    <None Include="wwwroot\assets\img\search.svg" />
+    <None Include="wwwroot\assets\img\st.png" />
+    <None Include="wwwroot\assets\img\tr1.png" />
+    <None Include="wwwroot\assets\img\tr10.png" />
+    <None Include="wwwroot\assets\img\tr11.png" />
+    <None Include="wwwroot\assets\img\tr12.png" />
+    <None Include="wwwroot\assets\img\tr2.png" />
+    <None Include="wwwroot\assets\img\tr3.png" />
+    <None Include="wwwroot\assets\img\tr4.png" />
+    <None Include="wwwroot\assets\img\tr5.png" />
+    <None Include="wwwroot\assets\img\tr6.png" />
+    <None Include="wwwroot\assets\img\tr7.png" />
+    <None Include="wwwroot\assets\img\tr8.png" />
+    <None Include="wwwroot\assets\img\tr9.png" />
+  </ItemGroup>
+
+</Project>
