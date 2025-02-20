@@ -1,4 +1,4 @@
-﻿
+﻿@model camRental.Models.LoginViewModel;
 @{
     ViewData["Title"] = "LogSign";
 }
@@ -18,12 +18,14 @@
                 <div class="text-center">
                     <img src="~/assets/img/profile.gif" style="width: 100px; height: 80px;" class="img-fluid" />
                 </div>
-                <form asp-action="" method="post">
+                <form asp-action="" method="post" asp-controller="Account">
                     <div class="form-group mt-3">
-                        <input type="email" class="form-control" placeholder="Email or Phone" required>
+                        <input type="hidden" name="actionType" id="actionType" value="login" class="form-control" />
+
+                        <input type="email" class="form-control" asp-for="Email" asp-for="Phone" placeholder="Email or Phone" required />
                     </div>
                     <div class="form-group mt-3">
-                        <input type="password" class="form-control" placeholder="Password" required>
+                        <input type="password" class="form-control" asp-for="Password" placeholder="Password" required />
                     </div>
                     <div class="form-group mt-3">
                         <button type="submit" class="btn btn-dark w-100">Login</button>
@@ -40,18 +42,18 @@
                 <div class="text-center">
                     <img src="~/assets/img/avataR.GIF" style="width: 100px; height: 80px;" class="img-fluid" />
                 </div>
-                <form asp-action="" method="post">
+                <form asp-action="" method="post" asp-controller="Account">
                     <div class="form-group mt-3">
-                        <input type="text" class="form-control" placeholder="Full Name" required>
+                        <input type="text" class="form-control" asp-for="FullName" placeholder="Full Name" required />
                     </div>
                     <div class="form-group mt-3">
-                        <input type="email" class="form-control" placeholder="Email" required>
+                        <input type="email" class="form-control" asp-for="Email" placeholder="Email" required />
                     </div>
                     <div class="form-group mt-3">
-                        <input type="tel" class="form-control" placeholder="Phone" required>
+                        <input type="tel" class="form-control" asp-for="Phone" placeholder="Phone" required />
                     </div>
                     <div class="form-group mt-3">
-                        <input type="password" class="form-control" placeholder="Password" required>
+                        <input type="password" class="form-control" asp-for="Password" placeholder="Password" required />
                     </div>
                     <div class="form-group mt-3">
                         <button type="submit" class="btn btn-dark w-100">Signup</button>
