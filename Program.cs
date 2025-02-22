@@ -4,28 +4,39 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
+
 namespace camRental
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)  // 👈 `async` method banaya
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Con")));
 
+            // Database Connection Setup
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Con")));
 
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            // Identity Setup
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
-            // Add services to the container.
+            // Add MVC Services
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                await CreateRoles(services);  // 👈 Roles aur Admin User Create Karne Ka Method
+            }
+
+            // Configure Middleware
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -37,45 +48,52 @@ namespace camRental
             app.UseAuthentication();
             app.UseAuthorization();
 
-            // Admin & User Routes Setup
+            // Routes Setup
             app.MapControllerRoute(
-                name: "areas",
-                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                name: "admin",
+                pattern: "admin",
+                defaults: new { controller = "Admin", action = "Dashboard" });
 
+            app.MapControllerRoute(
+                name: "user",
+                pattern: "user",
+                defaults: new { controller = "User", action = "Dashboard" });
 
-            // default route setup
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Account}/{action=Login}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
+            await app.RunAsync(); // 👈 `await` ka use kiya
+        }
 
-            // **Seed Admin & User Roles**
-            using (var scope = app.Services.CreateScope())
+        // 📌 **Role Aur Admin User Create Karne Ka Function**
+        private static async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+            string[] roleNames = { "Admin", "User" };
+            IdentityResult roleResult;
+
+            foreach (var roleName in roleNames)
             {
-                var services = scope.ServiceProvider;
-                SeedRoles(services).Wait();
+                var roleExist = await roleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
+                {
+                    roleResult = await roleManager.CreateAsync(new IdentityRole(roleName));
+                }
             }
 
-            app.Run();
-        }
-        // **Step 2: Admin & User Role Seed Function**
-        // ✅ **SeedRoles Method (Add this at the bottom of Program.cs)**
-        static async Task SeedRoles(IServiceProvider serviceProvider)
-        {
-            using (var scope = serviceProvider.CreateScope())
+            // **Default Admin User Create Karna**
+            var adminUser = await userManager.FindByEmailAsync("admin@camrental.com");
+            if (adminUser == null)
             {
-                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var admin = new IdentityUser { UserName = "admin@camrental.com", Email = "admin@camrental.com" };
+                var createAdmin = await userManager.CreateAsync(admin, "Admin@123");
 
-                string[] roleNames = { "Admin", "User" };
-                IdentityResult roleResult;
-
-                foreach (var roleName in roleNames)
+                if (createAdmin.Succeeded)
                 {
-                    var roleExist = await roleManager.RoleExistsAsync(roleName);
-                    if (!roleExist)
-                    {
-                        roleResult = await roleManager.CreateAsync(new IdentityRole(roleName));
-                    }
+                    await userManager.AddToRoleAsync(admin, "Admin");
                 }
             }
         }
