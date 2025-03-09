@@ -23,7 +23,7 @@
                     <div class="form-group mt-3">
                         <input type="hidden" name="actionType" id="actionType" value="login" class="form-control" />
 
-                        <input type="email" class="form-control" asp-for="Email" asp-for="Phone" placeholder="Email or Phone" required />
+                        <input type="email" class="form-control" asp-for="Email"  placeholder="Email" required />
                     </div>
                     <div class="form-group mt-3">
                         <input type="password" class="form-control" asp-for="Password" placeholder="Password" required />
@@ -52,6 +52,9 @@
                     </div>
                     <div class="form-group mt-3">
                         <input type="tel" class="form-control" asp-for="Phone" placeholder="Phone" required />
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" asp-for="Address" placeholder="Address" required />
                     </div>
                     <div class="form-group mt-3">
                         <input type="password" class="form-control" asp-for="Password" placeholder="Password" required />

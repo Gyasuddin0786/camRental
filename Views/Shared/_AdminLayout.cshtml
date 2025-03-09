@@ -1,12 +1,51 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>@ViewData["Title"] - Admin Panel</title>
-    <link rel="stylesheet" href="~/css/admin.css" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/admin-style.css">
 </head>
 <body>
-    <div class="admin-container">
-        @RenderBody()
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Admin/Dashboard">Admin Panel</a>
+            <div class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav">
+                    <!-- Profile Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i> Admin
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="/Admin/Profile">Profile</a></li>
+                            <li><a class="dropdown-item text-danger" href="/Account/Logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar & Content -->
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="bg-light p-3" style="width: 250px; min-height: 100vh;">
+            <h5>Admin Menu</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item"><a class="nav-link" href="/Admin/Dashboard">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Admin/ManageUsers">Manage Users</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Admin/ManageCameras">Manage Cameras</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Admin/ManageBookings">Manage Bookings</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <main class="p-4 flex-grow-1">
+            @RenderBody()
+        </main>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

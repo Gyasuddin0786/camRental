@@ -85,11 +85,11 @@ namespace camRental
             }
 
             // **Default Admin User Create Karna**
-            var adminUser = await userManager.FindByEmailAsync("admin@camrental.com");
+            var adminUser = await userManager.FindByEmailAsync("admin@gmail.com");
             if (adminUser == null)
             {
-                var admin = new IdentityUser { UserName = "admin@camrental.com", Email = "admin@camrental.com" };
-                var createAdmin = await userManager.CreateAsync(admin, "Admin@123");
+                var admin = new IdentityUser { UserName = "admin@camrental.com", Email = "admin@gmail.com" };
+                var createAdmin = await userManager.CreateAsync(admin, "admin123");
 
                 if (createAdmin.Succeeded)
                 {

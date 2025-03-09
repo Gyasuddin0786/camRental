@@ -9,5 +9,8 @@ namespace camRental.Controllers
         {
             return View();
         }
+        public IActionResult MyBookings() => View();
+        public IActionResult Profile() => View();
+        public IActionResult AvailableCameras() => View();
     }
 }

@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>Manage Bookings</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>User</th>
+            <th>Camera</th>
+            <th>Booking Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>John Doe</td>
+            <td>Sony A7III</td>
+            <td>2025-03-10</td>
+            <td><span class="badge bg-success">Confirmed</span></td>
+            <td>
+                <button class="btn btn-warning">Edit</button>
+                <button class="btn btn-danger">Cancel</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

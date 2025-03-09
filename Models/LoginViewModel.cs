@@ -12,6 +12,8 @@ namespace camRental.Models
         [Required]
         public string Phone {  get; set; }
         [Required]
+        public string Address { get; set; }
+        [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
