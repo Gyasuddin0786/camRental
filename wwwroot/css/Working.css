@@ -20,8 +20,8 @@
 }
 
     .our-services .icon {
-        margin-bottom: -21px;
-        transform: translateY(-50%);
+        margin-bottom: 21px;
+        transform: translateY(-1%);
         text-align: center;
     }
 
