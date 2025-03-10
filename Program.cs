@@ -100,6 +100,21 @@ namespace camRental
                     await userManager.AddToRoleAsync(admin, "Admin");
                 }
             }
+            // **Check & Create  User**
+            var userEmail = "user@gmail.com";
+            var userUser = await userManager.FindByEmailAsync(userEmail);
+
+            if (userUser == null)
+            {
+                var user = new IdentityUser { UserName = userEmail, Email = userEmail };
+                var result = await userManager.CreateAsync(user, "User@123");
+
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, "User");
+                }
+            }
+
         }
     }
 }
