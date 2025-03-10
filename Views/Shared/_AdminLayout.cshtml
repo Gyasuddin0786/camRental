@@ -3,49 +3,177 @@
 <head>
     <title>Admin Panel</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/css/admin-style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        /* Sidebar Styling */
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+            background-color: #343a40; /* Dark background */
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 15px;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+            .sidebar.collapsed {
+                width: 60px;
+                padding: 15px 5px;
+            }
+
+            .sidebar .nav-link {
+                color: white;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                white-space: nowrap;
+            }
+
+                .sidebar .nav-link i {
+                    font-size: 1.2rem;
+                }
+
+                .sidebar .nav-link span {
+                    transition: opacity 0.3s ease;
+                }
+
+            .sidebar.collapsed .nav-link span {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .sidebar.collapsed h5 {
+                display: none;
+            }
+
+        /* Adjust content area */
+        .content {
+            margin-left: 250px;
+            transition: margin-left 0.3s ease;
+            width: calc(100% - 250px);
+        }
+
+        .collapsed + .content {
+            margin-left: 60px;
+            width: calc(100% - 60px);
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            width: 100%;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+            font-size:25px;
+        }
+
+        .collapsed .toggle-icon {
+            transform: rotate(180deg);
+        }
+    </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/Admin/Dashboard">Admin Panel</a>
-            <div class="collapse navbar-collapse justify-content-end">
-                <ul class="navbar-nav">
-                    <!-- Profile Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-person-circle"></i> Admin
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="/Admin/Profile">Profile</a></li>
-                            <li><a class="dropdown-item text-danger" href="/Account/Logout">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
+
+    <!-- Sidebar -->
+    <div class="sidebar text-white" id="sidebar">
+        <h5 class="text-center ms-0">Admin Menu</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/Admin/Dashboard">
+                    <i class="bi bi-speedometer2"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/Admin/ManageUsers">
+                    <i class="bi bi-people"></i> <span>Manage Users</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/Admin/ManageCameras">
+                    <i class="bi bi-camera"></i> <span>Manage Cameras</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/Admin/ManageBookings">
+                    <i class="bi bi-calendar-check"></i> <span>Manage Bookings</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content" id="mainContent">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <!-- Sidebar Toggle Button -->
+                <button class="btn btn-dark me-2" id="toggleSidebar">
+                    <i class="bi bi-list toggle-icon"></i>
+                </button>
+
+                <h4 class="text-white">Admin Panel</h4>
+
+                <!-- Mobile Navbar Toggle -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <i class="bi bi-three-dots-vertical text-white"></i>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <!-- Profile Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle"></i> Admin
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="/Admin/Profile">
+                                        <i class="bi bi-person me-2"></i> Profile
+                                    </a>
+                                </li>
+                                <hr class="mb-0 mt-0"/>
+                                <li>
+                                    <a class="dropdown-item text-danger" href="/Account/Logout">
+                                        <i class="bi bi-box-arrow-right me-2"></i> Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <!-- Sidebar & Content -->
-    <div class="d-flex">
-        <!-- Sidebar -->
-        <div class="bg-light p-3" style="width: 250px; min-height: 100vh;">
-            <h5>Admin Menu</h5>
-            <ul class="nav flex-column">
-                <li class="nav-item"><a class="nav-link" href="/Admin/Dashboard">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" href="/Admin/ManageUsers">Manage Users</a></li>
-                <li class="nav-item"><a class="nav-link" href="/Admin/ManageCameras">Manage Cameras</a></li>
-                <li class="nav-item"><a class="nav-link" href="/Admin/ManageBookings">Manage Bookings</a></li>
-            </ul>
-        </div>
-
-        <!-- Main Content -->
-        <main class="p-4 flex-grow-1">
+        <!-- Page Content -->
+        <main class="p-4">
             @RenderBody()
         </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const sidebar = document.getElementById("sidebar");
+        const mainContent = document.getElementById("mainContent");
+        const toggleSidebar = document.getElementById("toggleSidebar");
+        const toggleIcon = toggleSidebar.querySelector(".toggle-icon");
+
+        toggleSidebar.addEventListener("click", function () {
+            sidebar.classList.toggle("collapsed");
+            mainContent.classList.toggle("collapsed");
+            toggleIcon.classList.toggle("bi-list");
+            toggleIcon.classList.toggle("bi-arrow-right-square");
+        });
+
+        // Auto-collapse sidebar on small screens
+        if (window.innerWidth < 992) {
+            sidebar.classList.add("collapsed");
+            mainContent.classList.add("collapsed");
+        }
+    </script>
+
 </body>
 </html>

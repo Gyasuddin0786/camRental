@@ -1,8 +1,146 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Dashboard";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Admin Dashboard</h2>
-<p>Welcome to the Admin Panel. Manage users, cameras, and bookings from here.</p>
+<h2 class="mb-4">Admin Dashboard</h2>
+
+<style>
+    /* Card Hover Effect */
+    .card-hover {
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation */
+    }
+
+        .card-hover:hover {
+            transform: translateY(-5px); /* Slight lift effect */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+        }
+
+    /* Ensuring equal height for better alignment */
+    .chart-container {
+        height: 350px;
+    }
+
+    .dashboard-container {
+        max-width: 1200px;
+        margin: auto;
+    }
+</style>
+
+<div class="container dashboard-container">
+    <!-- Card Section -->
+    <div class="row g-4">
+        <!-- g-4 adds spacing between cards -->
+        <div class="col-md-3">
+            <div class="card text-white bg-primary card-hover">
+                <div class="card-header">Total Users</div>
+                <div class="card-body text-center">
+                    <h3 class="card-title" id="totalUsers">0</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success card-hover">
+                <div class="card-header">Total Cameras</div>
+                <div class="card-body text-center">
+                    <h3 class="card-title" id="totalCameras">0</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning card-hover">
+                <div class="card-header">Total Lenses</div>
+                <div class="card-body text-center">
+                    <h3 class="card-title" id="totalLenses">0</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-danger card-hover">
+                <div class="card-header">Total Videography</div>
+                <div class="card-body text-center">
+                    <h3 class="card-title" id="totalVideography">0</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">Category Distribution</div>
+                <div class="card-body chart-container">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">Booking Trends</div>
+                <div class="card-body chart-container">
+                    <canvas id="lineChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Dummy Data (Replace with real data from backend)
+        var totalUsers = 150;
+        var totalCameras = 80;
+        var totalLenses = 50;
+        var totalVideography = 30;
+
+        document.getElementById("totalUsers").innerText = totalUsers;
+        document.getElementById("totalCameras").innerText = totalCameras;
+        document.getElementById("totalLenses").innerText = totalLenses;
+        document.getElementById("totalVideography").innerText = totalVideography;
+
+        // Pie Chart
+        var ctx1 = document.getElementById("pieChart").getContext("2d");
+        new Chart(ctx1, {
+            type: "pie",
+            data: {
+                labels: ["Users", "Cameras", "Lenses", "Videography"],
+                datasets: [{
+                    data: [totalUsers, totalCameras, totalLenses, totalVideography],
+                    backgroundColor: ["#007bff", "#28a745", "#ffc107", "#dc3545"]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false  // Allows height adjustment
+            }
+        });
+
+        // Line Chart (Booking Trends)
+        var ctx2 = document.getElementById("lineChart").getContext("2d");
+        new Chart(ctx2, {
+            type: "line",
+            data: {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+                datasets: [{
+                    label: "Total Bookings",
+                    data: [10, 25, 35, 50, 70, 90], // Dummy Data
+                    borderColor: "#007bff",
+                    backgroundColor: "rgba(0, 123, 255, 0.1)", // Light fill effect
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,  // Allows height adjustment
+                elements: {
+                    line: {
+                        tension: 0.4 // Smooth curves
+                    }
+                }
+            }
+        });
+    });
+</script>
