@@ -10,7 +10,11 @@ namespace camRental.Controllers
             return View();
         }
         public IActionResult ManageUsers() => View();
-        public IActionResult ManageCameras() => View();
+        public IActionResult AddCamLensVideo() => View();
+        public IActionResult AddTrandingCamLensVideo() => View();
+        public IActionResult CardProdList() => View();
+        public IActionResult TrandingProdList() => View();
+
         public IActionResult ManageBookings() => View();
     }
 }

@@ -1,0 +1,101 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2 class="mb-2">Add Cameras / Lenses / Videography</h2>
+
+<!-- Add Product Form -->
+<div class="card p-3 mb-3">
+    <form id="addProductForm">
+        <div class="mb-3">
+            <label class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="productName">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select class="form-select" id="productCategory" onchange="updateSubcategories('productSubCategory')">
+                <option>Camera</option>
+                <option>Lens</option>
+                <option>Videography</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Subcategory</label>
+            <select class="form-select" id="productSubCategory"></select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Price (₹/Day)</label>
+            <input type="number" class="form-control" id="productPrice">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Image URL</label>
+            <input type="text" class="form-control" id="productImage">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Product</button>
+    </form>
+</div>
+
+<!-- Edit Product Modal -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editProductForm">
+                    <input type="hidden" id="editProductId">
+                    <div class="mb-3">
+                        <label class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="editProductName">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <select class="form-select" id="editProductCategory" onchange="updateSubcategories('editProductSubCategory')">
+                            <option>Camera</option>
+                            <option>Lens</option>
+                            <option>Videography</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Subcategory</label>
+                        <select class="form-select" id="editProductSubCategory"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Price (₹/Day)</label>
+                        <input type="number" class="form-control" id="editProductPrice">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Image URL</label>
+                        <input type="text" class="form-control" id="editProductImage">
+                    </div>
+                    <button type="submit" class="btn btn-warning">Update Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const subcategories = {
+        "Camera": ["DSLR", "Mirrorless", "Point & Shoot"],
+        "Lens": ["Nikon", "Canon", "Sigma", "Tamron"],
+        "Videography": ["DSLR", "Mirrorless", "Point & Shoot"]
+    };
+
+    function updateSubcategories(subCategoryId) {
+        let categorySelect = document.getElementById(subCategoryId === "productSubCategory" ? "productCategory" : "editProductCategory");
+        let subCategorySelect = document.getElementById(subCategoryId);
+        let selectedCategory = categorySelect.value;
+
+        subCategorySelect.innerHTML = "";
+        subcategories[selectedCategory].forEach(subCat => {
+            let option = document.createElement("option");
+            option.textContent = subCat;
+            subCategorySelect.appendChild(option);
+        });
+    }
+
+    // Set initial subcategories on page load
+    updateSubcategories('productSubCategory');
+</script>

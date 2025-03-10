@@ -1,0 +1,102 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2 class="mb-2">Trending Product List</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Subcategory</th>
+            <th>Price (₹/Day)</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="trendingProductTable">
+        <tr>
+            <td>1</td>
+            <td>Sony A7III</td>
+            <td>Camera</td>
+            <td>Mirrorless</td>
+            <td>₹2000</td>
+            <td><img src="image_url" alt="Product Image" width="50"></td>
+            <td>
+                <button class="btn btn-warning edit-btn" data-bs-toggle="modal" data-bs-target="#editProductModal"
+                        data-id="1" data-name="Sony A7III" data-category="Camera" data-subcategory="Mirrorless"
+                        data-price="2000" data-image="image_url">
+                    Edit
+                </button>
+                <button class="btn btn-danger delete-btn" data-id="1">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Edit Product Modal -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editProductForm">
+                    <input type="hidden" id="editProductId">
+                    <div class="mb-3">
+                        <label class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="editProductName">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <select class="form-select" id="editProductCategory">
+                            <option>Camera</option>
+                            <option>Lens</option>
+                            <option>Videography</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Subcategory</label>
+                        <select class="form-select" id="editProductSubCategory"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Price (₹/Day)</label>
+                        <input type="number" class="form-control" id="editProductPrice">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Image URL</label>
+                        <input type="text" class="form-control" id="editProductImage">
+                    </div>
+                    <button type="submit" class="btn btn-warning">Update Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Fill Edit Form with existing data
+    document.querySelectorAll(".edit-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            document.getElementById("editProductId").value = this.getAttribute("data-id");
+            document.getElementById("editProductName").value = this.getAttribute("data-name");
+            document.getElementById("editProductCategory").value = this.getAttribute("data-category");
+            document.getElementById("editProductPrice").value = this.getAttribute("data-price");
+            document.getElementById("editProductImage").value = this.getAttribute("data-image");
+        });
+    });
+
+    // Delete Product Confirmation
+    document.querySelectorAll(".delete-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            let productId = this.getAttribute("data-id");
+            if (confirm("Are you sure you want to delete this product?")) {
+                this.closest("tr").remove(); // Remove row from table
+                alert("Product deleted successfully!");
+            }
+        });
+    });
+</script>
