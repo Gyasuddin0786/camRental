@@ -9,31 +9,32 @@ namespace camRental
 {
     public class Program
     {
-        public static async Task Main(string[] args)  // 👈 `async` method banaya
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Database Connection Setup
+            // **Database Connection**
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Con")));
 
-            // Identity Setup
+            // **Identity Configuration**
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            // Add MVC Services
+            // **MVC Services**
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
 
+            // **Create Roles & Admin User on Startup**
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                await CreateRoles(services);  // 👈 Roles aur Admin User Create Karne Ka Method
+                await CreateRolesAndAdmin(services);
             }
 
-            // Configure Middleware
+            // **Middleware Setup**
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
@@ -42,13 +43,11 @@ namespace camRental
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
 
-            // Routes Setup
+            // **Routing Configuration**
             app.MapControllerRoute(
                 name: "admin",
                 pattern: "admin",
@@ -63,39 +62,59 @@ namespace camRental
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            await app.RunAsync(); // 👈 `await` ka use kiya
+            app.MapControllerRoute(
+                name: "account",
+                pattern: "{controller=Account}/{action=Login}/{id?}");
+
+
+            await app.RunAsync();
         }
 
-        // 📌 **Role Aur Admin User Create Karne Ka Function**
-        private static async Task CreateRoles(IServiceProvider serviceProvider)
+        // **📌 Create Roles & Admin User Function**
+        private static async Task CreateRolesAndAdmin(IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-            string[] roleNames = { "Admin", "User" };
-            IdentityResult roleResult;
+            string[] roles = { "Admin", "User" };
 
-            foreach (var roleName in roleNames)
+            foreach (var role in roles)
             {
-                var roleExist = await roleManager.RoleExistsAsync(roleName);
-                if (!roleExist)
+                if (!await roleManager.RoleExistsAsync(role))
                 {
-                    roleResult = await roleManager.CreateAsync(new IdentityRole(roleName));
+                    await roleManager.CreateAsync(new IdentityRole(role));
                 }
             }
 
-            // **Default Admin User Create Karna**
-            var adminUser = await userManager.FindByEmailAsync("admin@camrental.com");
+            // **Check & Create Admin User**
+            var adminEmail = "admin@gmail.com";
+            var adminUser = await userManager.FindByEmailAsync(adminEmail);
+
             if (adminUser == null)
             {
-                var admin = new IdentityUser { UserName = "admin@camrental.com", Email = "admin@camrental.com" };
-                var createAdmin = await userManager.CreateAsync(admin, "Admin@123");
+                var admin = new IdentityUser { UserName = adminEmail, Email = adminEmail };
+                var result = await userManager.CreateAsync(admin, "Admin@123");
 
-                if (createAdmin.Succeeded)
+                if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(admin, "Admin");
                 }
             }
+            // **Check & Create  User**
+            var userEmail = "user@gmail.com";
+            var userUser = await userManager.FindByEmailAsync(userEmail);
+
+            if (userUser == null)
+            {
+                var user = new IdentityUser { UserName = userEmail, Email = userEmail };
+                var result = await userManager.CreateAsync(user, "User@123");
+
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, "User");
+                }
+            }
+
         }
     }
 }

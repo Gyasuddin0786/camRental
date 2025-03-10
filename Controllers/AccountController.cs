@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+
 namespace camRental.Controllers
 {
+    [Route("Account")]
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -13,9 +16,8 @@ namespace camRental.Controllers
             _signInManager = signInManager;
         }
 
-
         // **Login Page**
-        [HttpGet]
+        [HttpGet("Login")]
         public IActionResult Login()
         {
             return View();
@@ -26,25 +28,24 @@ namespace camRental.Controllers
         {
             var user = await _userManager.FindByEmailAsync(email);
 
-            if (user != null)
+            if (user == null)
             {
-                var result = await _signInManager.PasswordSignInAsync(user.UserName, password, false, false);
-
-                if (result.Succeeded)
-                {
-                    // **Check Role & Redirect Accordingly**
-                    if (await _userManager.IsInRoleAsync(user, "Admin"))
-                    {
-                        return RedirectToAction("Dashboard", "Admin");  // 👈 Admin Panel
-                    }
-                    else
-                    {
-                        return RedirectToAction("Dashboard", "User");  // 👈 User Panel
-                    }
-                }
+                ModelState.AddModelError("", "Invalid email or password.");
+                return View();
             }
 
-            ModelState.AddModelError("", "Invalid login attempt");
+            var result = await _signInManager.PasswordSignInAsync(user, password, false, false);
+            if (result.Succeeded)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+
+                if (roles.Contains("Admin"))
+                    return RedirectToAction("Dashboard", "Admin");  // Redirect to Admin Panel
+                else
+                    return RedirectToAction("Dashboard", "User");  // Redirect to User Panel
+            }
+
+            ModelState.AddModelError("", "Invalid email or password.");
             return View();
         }
 
