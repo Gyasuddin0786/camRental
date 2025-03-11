@@ -8,7 +8,12 @@ namespace camRental.Database
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
+
         }
+        public DbSet<Camera> Cameras { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
