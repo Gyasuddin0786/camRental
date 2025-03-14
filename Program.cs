@@ -27,11 +27,25 @@ namespace camRental
 
             var app = builder.Build();
 
-            // **Create Roles & Admin User on Startup**
+            // ✅ Create Roles, Admin User and Seed Database
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                await CreateRolesAndAdmin(services);
+
+                try
+                {
+                    var context = services.GetRequiredService<ApplicationDbContext>();
+
+                    // ✅ Call DbInitializer
+                    DbInitializer.Initialize(context);
+
+                    // ✅ Call Role & Admin Seeder
+                    await CreateRolesAndAdminAsync(services);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error while seeding roles: {ex.Message}");
+                }
             }
 
             // **Middleware Setup**
@@ -66,18 +80,17 @@ namespace camRental
                 name: "account",
                 pattern: "{controller=Account}/{action=Login}/{id?}");
 
-
             await app.RunAsync();
         }
 
-        // **📌 Create Roles & Admin User Function**
-        private static async Task CreateRolesAndAdmin(IServiceProvider serviceProvider)
+        // ✅ **Create Roles & Admin Function**
+        private static async Task CreateRolesAndAdminAsync(IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
+            // ✅ Add Roles
             string[] roles = { "Admin", "User" };
-
             foreach (var role in roles)
             {
                 if (!await roleManager.RoleExistsAsync(role))
@@ -86,13 +99,18 @@ namespace camRental
                 }
             }
 
-            // **Check & Create Admin User**
+            // ✅ Create Admin User
             var adminEmail = "admin@gmail.com";
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
 
             if (adminUser == null)
             {
-                var admin = new IdentityUser { UserName = adminEmail, Email = adminEmail };
+                var admin = new IdentityUser
+                {
+                    UserName = adminEmail,
+                    Email = adminEmail
+                };
+
                 var result = await userManager.CreateAsync(admin, "Admin@123");
 
                 if (result.Succeeded)
@@ -100,13 +118,19 @@ namespace camRental
                     await userManager.AddToRoleAsync(admin, "Admin");
                 }
             }
-            // **Check & Create  User**
-            var userEmail = "user@gmail.com";
-            var userUser = await userManager.FindByEmailAsync(userEmail);
 
-            if (userUser == null)
+            // ✅ Create Normal User
+            var userEmail = "user@gmail.com";
+            var normalUser = await userManager.FindByEmailAsync(userEmail);
+
+            if (normalUser == null)
             {
-                var user = new IdentityUser { UserName = userEmail, Email = userEmail };
+                var user = new IdentityUser
+                {
+                    UserName = userEmail,
+                    Email = userEmail
+                };
+
                 var result = await userManager.CreateAsync(user, "User@123");
 
                 if (result.Succeeded)
@@ -114,7 +138,6 @@ namespace camRental
                     await userManager.AddToRoleAsync(user, "User");
                 }
             }
-
         }
     }
 }
