@@ -20,7 +20,7 @@ namespace camRental.Database
                 new User { Id = "2", FullName = "Jane Smith", Email = "jane@example.com", Phone = "987654321", Address = "UK", Role = "User" }
             };
 
-            context.Users.AddRange(users);  // ✅ No Error Here
+            context.Users.AddRange((IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>)users);  // ✅ No Error Here
             context.SaveChanges(); // ✅ Save to Database
         }
     }
