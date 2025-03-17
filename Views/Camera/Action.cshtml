@@ -1,0 +1,127 @@
+﻿@{
+    ViewData["Title"] = "Action";
+}
+
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        width: 100vw;
+        overflow-x : hidden;
+    }
+
+
+    .container {
+        display: flex;
+        align-items: center;
+        margin: 68px auto;
+        justify-content: space-around;
+    }
+
+    .text {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .dslr-image img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .gallery-section {
+        margin-top: 30px;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .gallery-heading {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .scroll-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        white-space: nowrap;
+        padding-bottom: 10px;
+        scrollbar-width: none;
+    }
+
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scroll-container img {
+            width: 150px;
+            height: 100px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+</style>
+
+<div class="container">
+    <div class="text">Action</div>
+    <div class="dslr-image">
+        <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="DSLR Camera">
+    </div>
+</div>
+
+<div class="gallery-section">
+    <div class="gallery-heading">Nikon</div>
+    <div class="scroll-container">
+        <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="Nikon 1">
+        <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="Nikon 2">
+        <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="Nikon 3">
+        <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="Nikon 4">
+        <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="Nikon 5">
+        <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="Nikon 6">
+    </div>
+</div>
+
+<div class="gallery-section">
+    <div class="gallery-heading">Canon</div>
+    <div class="scroll-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Canon_EOS_5D_Mark_IV.jpg" alt="Canon 1">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Canon_EOS_90D.jpg" alt="Canon 2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Canon_EOS_6D.jpg" alt="Canon 3">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Canon_EOS_200D.jpg" alt="Canon 4">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Canon_EOS_800D.jpg" alt="Canon 5">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Canon_EOS_77D.jpg" alt="Canon 6">
+    </div>
+</div>
+
+<div class="gallery-section">
+    <div class="gallery-heading">Pentax</div>
+    <div class="scroll-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Pentax_K-1.jpg" alt="Pentax 1">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Pentax_KP.jpg" alt="Pentax 2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Pentax_K-70.jpg" alt="Pentax 3">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Pentax_K-S2.jpg" alt="Pentax 4">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Pentax_K-3.jpg" alt="Pentax 5">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Pentax_K-50.jpg" alt="Pentax 6">
+    </div>
+</div>
+
+<div class="gallery-section">
+    <div class="gallery-heading">Sony</div>
+    <div class="scroll-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Sony_Alpha_A7R_III.jpg" alt="Sony 1">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Sony_Alpha_A6400.jpg" alt="Sony 2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Sony_Alpha_A7III.jpg" alt="Sony 3">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Sony_Alpha_A9.jpg" alt="Sony 4">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Sony_Alpha_A6600.jpg" alt="Sony 5">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Sony_Alpha_A6000.jpg" alt="Sony 6">
+    </div>
+</div>
+
