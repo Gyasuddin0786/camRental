@@ -12,5 +12,11 @@ namespace camRental.Controllers
         {
             return View();
         }
+
+
+        public IActionResult MirrorLess()
+        {
+            return View();
+        }
     }
 }
