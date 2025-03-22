@@ -3,126 +3,279 @@
     ViewData["Title"] = "DSLR";
 }
 
+<style>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+
+    .container {
+        display: flex;
+        align-items: center;
+        margin: 68px auto;
+        justify-content: space-around;
+    }
+
+    .text {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .dslr-image img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .gallery-section {
+        margin-top: 30px;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .gallery-heading {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .scroll-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        white-space: nowrap;
+        padding-bottom: 10px;
+        scrollbar-width: none;
+    }
+
+    .scroll-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scroll-container img {
+        width: 150px;
+        height: 100px;
+        border-radius: 5px;
+        object-fit: cover;
+    }
+
+
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        width: 100vw;
+        overflow-x: hidden;
+    }
+
+    .gallery-section {
+        margin-top: 30px;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .gallery-heading {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .scroll-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        padding-bottom: 10px;
+        scrollbar-width: none;
+    }
+
+        .scroll-container::-webkit-scrollbar {
+            display: none;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            width: 100vw;
-            overflow-x : hidden;
+    .card {
+        width: 180px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        text-align: center;
+    }
+
+        .card img {
+            width: 100%;
+            height: 120px;
+            border-radius: 5px;
+            object-fit: cover;
         }
 
-
-        .container {
-            display: flex;
-            align-items: center;
-            margin: 68px auto;
-            justify-content: space-around;
-        }
-
-        .text {
-            font-size: 2rem;
+        .card .name {
+            font-size: 1rem;
+            margin-top: 5px;
             font-weight: bold;
         }
 
-        .dslr-image img {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 10px;
+        .card .price {
+            font-size: 0.9rem;
+            color: #28a745;
+            margin-top: 3px;
         }
+</style>
 
-        .gallery-section {
-            margin-top: 30px;
-            max-width: 90%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .gallery-heading {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .scroll-container {
-            display: flex;
-            overflow-x: auto;
-            gap: 10px;
-            white-space: nowrap;
-            padding-bottom: 10px;
-            scrollbar-width: none;
-        }
-
-            .scroll-container::-webkit-scrollbar {
-                display: none;
-            }
-
-            .scroll-container img {
-                width: 150px;
-                height: 100px;
-                border-radius: 5px;
-                object-fit: cover;
-            }
-    </style>
-
-    <div class="container">
-        <div class="text">DSLR</div>
-        <div class="dslr-image">
-            <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="DSLR Camera">
-        </div>
+<div class="container">
+    <div class="text">DSLR</div>
+    <div class="dslr-image">
+        <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="DSLR Camera">
     </div>
+</div>
 
-    <div class="gallery-section">
-        <div class="gallery-heading">Nikon</div>
-        <div class="scroll-container">
-            <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="Nikon 1">
-            <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="Nikon 2">
-            <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="Nikon 3">
-            <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="Nikon 4">
-            <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="Nikon 5">
-            <img src="https://www.pngmart.com/files/6/DSLR-Camera-Transparent-PNG.png" alt="Nikon 6">
+<div class="gallery-section">
+    <div class="gallery-heading">Nikon</div>
+    <div class="scroll-container">
+        <div class="card">
+            <img src="https://static.cmra.nu/147/1477383198_350.jpg" alt="Nikon 1">
+            <div class="name">Nikon D3500</div>
+            <div class="price">₹45,000</div>
         </div>
-    </div>
-
-    <div class="gallery-section">
-        <div class="gallery-heading">Canon</div>
-        <div class="scroll-container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Canon_EOS_5D_Mark_IV.jpg" alt="Canon 1">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Canon_EOS_90D.jpg" alt="Canon 2">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Canon_EOS_6D.jpg" alt="Canon 3">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Canon_EOS_200D.jpg" alt="Canon 4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Canon_EOS_800D.jpg" alt="Canon 5">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Canon_EOS_77D.jpg" alt="Canon 6">
+        <div class="card">
+            <img src="https://proavexpress.com.au/wp-content/uploads/2018/04/dvfl350-sony-02.jpg" alt="Nikon 2">
+            <div class="name">Nikon Z50</div>
+            <div class="price">₹72,000</div>
         </div>
-    </div>
-
-    <div class="gallery-section">
-        <div class="gallery-heading">Pentax</div>
-        <div class="scroll-container">
+        <div class="card">
+            <img src="https://th.bing.com/th/id/R.d229a3615f9745596123eda843d1bfc6" alt="Canon 1">
+            <div class="name">Canon EOS 1500D</div>
+            <div class="price">₹40,500</div>
+        </div>
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.by7NpafzXmbXfreVq18-oQEsC3" alt="Canon 2">
+            <div class="name">Canon EOS 90D</div>
+            <div class="price">₹1,05,000</div>
+        </div>
+        <div class="card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Pentax_K-1.jpg" alt="Pentax 1">
+            <div class="name">Pentax K-1</div>
+            <div class="price">₹1,35,000</div>
+        </div>
+        <div class="card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Pentax_KP.jpg" alt="Pentax 2">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Pentax_K-70.jpg" alt="Pentax 3">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Pentax_K-S2.jpg" alt="Pentax 4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Pentax_K-3.jpg" alt="Pentax 5">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Pentax_K-50.jpg" alt="Pentax 6">
+            <div class="name">Pentax KP</div>
+            <div class="price">₹95,000</div>
         </div>
     </div>
+</div>
 
-    <div class="gallery-section">
-        <div class="gallery-heading">Sony</div>
-        <div class="scroll-container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Sony_Alpha_A7R_III.jpg" alt="Sony 1">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Sony_Alpha_A6400.jpg" alt="Sony 2">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Sony_Alpha_A7III.jpg" alt="Sony 3">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Sony_Alpha_A9.jpg" alt="Sony 4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Sony_Alpha_A6600.jpg" alt="Sony 5">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Sony_Alpha_A6000.jpg" alt="Sony 6">
+
+<div class="gallery-section">
+    <div class="gallery-heading">Canon</div>
+    <div class="scroll-container">
+        <div class="card">
+            <img src="https://static.cmra.nu/147/1477383198_350.jpg" alt="Nikon 1">
+            <div class="name">Nikon D3500</div>
+            <div class="price">₹45,000</div>
+        </div>
+        <div class="card">
+            <img src="https://proavexpress.com.au/wp-content/uploads/2018/04/dvfl350-sony-02.jpg" alt="Nikon 2">
+            <div class="name">Nikon Z50</div>
+            <div class="price">₹72,000</div>
+        </div>
+        <div class="card">
+            <img src="https://th.bing.com/th/id/R.d229a3615f9745596123eda843d1bfc6" alt="Canon 1">
+            <div class="name">Canon EOS 1500D</div>
+            <div class="price">₹40,500</div>
+        </div>
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.by7NpafzXmbXfreVq18-oQEsC3" alt="Canon 2">
+            <div class="name">Canon EOS 90D</div>
+            <div class="price">₹1,05,000</div>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Pentax_K-1.jpg" alt="Pentax 1">
+            <div class="name">Pentax K-1</div>
+            <div class="price">₹1,35,000</div>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Pentax_KP.jpg" alt="Pentax 2">
+            <div class="name">Pentax KP</div>
+            <div class="price">₹95,000</div>
         </div>
     </div>
+</div>
+
+<div class="gallery-section">
+    <div class="gallery-heading">Pentax</div>
+    <div class="scroll-container">
+        <div class="card">
+            <img src="https://static.cmra.nu/147/1477383198_350.jpg" alt="Nikon 1">
+            <div class="name">Nikon D3500</div>
+            <div class="price">₹45,000</div>
+        </div>
+        <div class="card">
+            <img src="https://proavexpress.com.au/wp-content/uploads/2018/04/dvfl350-sony-02.jpg" alt="Nikon 2">
+            <div class="name">Nikon Z50</div>
+            <div class="price">₹72,000</div>
+        </div>
+        <div class="card">
+            <img src="https://th.bing.com/th/id/R.d229a3615f9745596123eda843d1bfc6" alt="Canon 1">
+            <div class="name">Canon EOS 1500D</div>
+            <div class="price">₹40,500</div>
+        </div>
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.by7NpafzXmbXfreVq18-oQEsC3" alt="Canon 2">
+            <div class="name">Canon EOS 90D</div>
+            <div class="price">₹1,05,000</div>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Pentax_K-1.jpg" alt="Pentax 1">
+            <div class="name">Pentax K-1</div>
+            <div class="price">₹1,35,000</div>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Pentax_KP.jpg" alt="Pentax 2">
+            <div class="name">Pentax KP</div>
+            <div class="price">₹95,000</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="gallery-section">
+    <div class="gallery-heading">Sony</div>
+    <div class="scroll-container">
+        <div class="card">
+            <img src="https://static.cmra.nu/147/1477383198_350.jpg" alt="Nikon 1">
+            <div class="name">Nikon D3500</div>
+            <div class="price">₹45,000</div>
+        </div>
+        <div class="card">
+            <img src="https://proavexpress.com.au/wp-content/uploads/2018/04/dvfl350-sony-02.jpg" alt="Nikon 2">
+            <div class="name">Nikon Z50</div>
+            <div class="price">₹72,000</div>
+        </div>
+        <div class="card">
+            <img src="https://th.bing.com/th/id/R.d229a3615f9745596123eda843d1bfc6" alt="Canon 1">
+            <div class="name">Canon EOS 1500D</div>
+            <div class="price">₹40,500</div>
+        </div>
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIP.by7NpafzXmbXfreVq18-oQEsC3" alt="Canon 2">
+            <div class="name">Canon EOS 90D</div>
+            <div class="price">₹1,05,000</div>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Pentax_K-1.jpg" alt="Pentax 1">
+            <div class="name">Pentax K-1</div>
+            <div class="price">₹1,35,000</div>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Pentax_KP.jpg" alt="Pentax 2">
+            <div class="name">Pentax KP</div>
+            <div class="price">₹95,000</div>
+        </div>
+    </div>
+</div>
+
 
